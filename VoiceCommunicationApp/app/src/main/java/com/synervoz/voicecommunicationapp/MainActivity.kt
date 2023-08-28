@@ -15,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import com.synervoz.switchboard.sdk.SwitchboardSDK
 import com.synervoz.switchboardagora.AgoraExtension
 import com.synervoz.voicecommunicationapp.databinding.ActivityMainBinding
+import com.synervoz.voicecommunicationapp.ui.room.RoomFragment
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -32,10 +33,10 @@ class MainActivity : AppCompatActivity() {
         if (!requestPermission()) return
         if (savedInstanceState == null) {
             lifecycleScope.launch {
-//                supportFragmentManager.commit {
-//                    replace<RecordingFragment>(R.id.container)
-//                    setReorderingAllowed(true)
-//                }
+                supportFragmentManager.commit {
+                    replace<RoomFragment>(R.id.container)
+                    setReorderingAllowed(true)
+                }
             }
         }
     }
@@ -79,10 +80,10 @@ class MainActivity : AppCompatActivity() {
             }
         if (hasAllPermissions) {
             lifecycleScope.launch {
-//                supportFragmentManager.commit {
-//                    replace<RecordingFragment>(R.id.container)
-//                    setReorderingAllowed(true)
-//                }
+                supportFragmentManager.commit {
+                    replace<RoomFragment>(R.id.container)
+                    setReorderingAllowed(true)
+                }
             }
         }
     }

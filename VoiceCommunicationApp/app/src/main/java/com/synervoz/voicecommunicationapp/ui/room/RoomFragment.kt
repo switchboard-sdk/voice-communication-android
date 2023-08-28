@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import com.synervoz.voicecommunicationapp.databinding.FragmentRoomBinding
 import com.synervoz.voicecommunicationapp.ui.common.BaseFragment
@@ -24,11 +26,18 @@ class RoomFragment : BaseFragment<FragmentRoomBinding, RoomViewState, RoomViewMo
             field = value
         }
 
+    private lateinit var adapter: UserListAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         setView(FragmentRoomBinding.inflate(inflater, container, false))
+
+        adapter = UserListAdapter(emptyList())
+        binding.userList.adapter = adapter
+
+        binding.activeLabel.visibility = View.INVISIBLE
 
         return binding.root
     }
@@ -36,31 +45,83 @@ class RoomFragment : BaseFragment<FragmentRoomBinding, RoomViewState, RoomViewMo
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        viewModel.startAudioSystem()
+        binding.username.addTextChangedListener {
+            binding.joinButton.isEnabled = checkIfCanJoin()
+        }
+
+        binding.roomName.addTextChangedListener {
+            binding.joinButton.isEnabled = checkIfCanJoin()
+        }
+
+        binding.joinButton.setOnClickListener {
+            viewModel.toggleJoin(binding.username.text.toString(), binding.roomName.text.toString())
+        }
+
+        binding.joinButton.isEnabled = false
+
+        viewModel.start()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-//        viewModel.stopAudioSystem()
+        viewModel.stop()
     }
 
     override fun renderViewState(viewState: ViewState) {
         when (viewState) {
             is RoomViewState.Loading -> renderLoadingState(viewState)
-            is RoomViewState.Ready -> renderReadyState(viewState)
+            is RoomViewState.Joined -> renderJoinedState(viewState)
+            is RoomViewState.Left -> renderLeftState(viewState)
         }
     }
 
     override fun handleSideEffect(sideEffect: SideEffect) {
-
+        when (sideEffect) {
+            is RoomSideEffect.UpdatedUsers -> handleUpdatedUsers(sideEffect)
+            is RoomSideEffect.Error -> handleError(sideEffect)
+        }
     }
 
     private fun renderLoadingState(viewState: RoomViewState.Loading) {
         loading = true
     }
 
-    private fun renderReadyState(viewState: RoomViewState.Ready) {
-        loading = false
+    private fun renderJoinedState(viewState: RoomViewState.Joined) {
+        setJoinedState()
     }
 
+    private fun renderLeftState(viewState: RoomViewState.Left) {
+        setLeftState()
+    }
+
+    private fun handleUpdatedUsers(sideEffect: RoomSideEffect.UpdatedUsers) {
+        adapter.userIds = sideEffect.users
+    }
+
+    private fun handleError(sideEffect: RoomSideEffect.Error) {
+        Toast.makeText(requireContext(), sideEffect.error, Toast.LENGTH_LONG)
+    }
+
+    private fun checkIfCanJoin(): Boolean {
+        return !binding.username.text.isBlank() && !binding.roomName.text.isBlank()
+    }
+
+    fun setJoinedState() {
+        loading = false
+        binding.username.isEnabled = false
+        binding.roomName.isEnabled = false
+        binding.joinButton.text = "Leave"
+
+        binding.activeLabel.text = "Room ${binding.roomName.text} active"
+        binding.activeLabel.visibility = View.VISIBLE
+    }
+
+    fun setLeftState() {
+        loading = false
+        binding.username.isEnabled = true
+        binding.roomName.isEnabled = true
+        binding.joinButton.text = "JOIN"
+
+        binding.activeLabel.visibility = View.INVISIBLE
+    }
 }

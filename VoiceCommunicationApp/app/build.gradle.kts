@@ -53,6 +53,9 @@ dependencies {
     implementation(files("../../libs/SwitchboardSDK.aar"))
     implementation(files("../../libs/SwitchboardAgora.aar"))
 
+    implementation("io.agora.rtc:full-sdk:3.7.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
+
     implementation("androidx.core:core-ktx:1.10.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")

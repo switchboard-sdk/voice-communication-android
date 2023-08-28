@@ -1,9 +1,9 @@
 package com.synervoz.voicecommunicationapp
 
 object Config {
-    val clientID = "Synervoz"
-    val clientSecret = "VoiceCommunicationApp"
-    val agoraAppID = ""
+    val clientID = "ENTER CLIENT ID"
+    val clientSecret = "ENTER CLIENT SECRET"
+    val agoraAppID = "ENTER AGORA APP ID"
 
-    val switchboardAPIBaseURL = "https://api-dev.synervoz.com/"
+    val switchboardAPIBaseURL = "https://api-dev.synervoz.com"
 }

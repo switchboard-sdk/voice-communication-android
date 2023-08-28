@@ -34,11 +34,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
+        android:hint="Username"
         android:inputType="text"
-        android:text="Username"
-        app:layout_constraintTop_toBottomOf="@id/instructions"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/instructions" />
 
     <EditText
         android:id="@+id/room_name"
@@ -46,11 +46,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
+        android:hint="Room name"
         android:inputType="text"
-        android:text="Room name"
-        app:layout_constraintTop_toBottomOf="@id/username"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/username" />
 
     <Button
         android:id="@+id/join_button"
@@ -63,16 +63,27 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+        android:id="@+id/active_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Room active"
+        android:textSize="14sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/join_button" />
+
+    <TextView
         android:id="@+id/users_label"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:text="Users"
         android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/join_button" />
+        app:layout_constraintTop_toBottomOf="@id/active_label" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/user_list"
