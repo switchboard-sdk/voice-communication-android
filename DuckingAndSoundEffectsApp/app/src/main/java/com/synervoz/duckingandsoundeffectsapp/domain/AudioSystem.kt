@@ -47,12 +47,7 @@ class AudioSystem(roomManager: RoomManager) {
         agoraResampledSourceNode.internalSampleRate = roomManager.getAudioBus().sampleRate
         agoraResampledSinkNode.internalSampleRate = roomManager.getAudioBus().sampleRate
 
-//        let music = Bundle.main.url(forResource: "EMH-My_Lover", withExtension: "mp3")!
-//        let effect = Bundle.main.url(forResource: "airhorn", withExtension: "mp3")!
-
         musicPlayerNode.isLoopingEnabled = true
-//        musicPlayerNode.load(music.absoluteString, withFormat: .apple)
-//        effectsPlayerNode.load(effect.absoluteString, withFormat: .apple)
 
         audioGraph.addNode(agoraResampledSourceNode)
         audioGraph.addNode(agoraResampledSinkNode)
