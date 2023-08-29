@@ -120,7 +120,7 @@ class RoomFragment : BaseFragment<FragmentRoomBinding, RoomViewState, RoomViewMo
         loading = false
         binding.username.isEnabled = true
         binding.roomName.isEnabled = true
-        binding.joinButton.text = "JOIN"
+        binding.joinButton.text = "Join"
 
         binding.activeLabel.visibility = View.INVISIBLE
     }
