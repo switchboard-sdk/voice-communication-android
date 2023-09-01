@@ -34,4 +34,12 @@ The app has the following **features** over the Voice Communication App:
 
 ## [Online Radio App](OnlineRadioApp/README.md)
 
-Coming soon...
+The app has the following **features**:
+
+- Broadcasting audio as a host
+- Listening to the host in a channel
+- Ability to join arbitrarily-named channels
+- Ability to broadcast music in a channel as a host
+- Ability to broadcast sound effects in a channel as a host
+
+<a href="https://docs.switchboard.audio/docs/examples/online-radio-app/" target="_blank">Find more info on the Online Radio App HERE</a>
