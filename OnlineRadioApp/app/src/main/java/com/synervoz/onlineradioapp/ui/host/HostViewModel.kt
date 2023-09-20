@@ -102,7 +102,7 @@ class HostViewModel(
             initializer {
                 val application = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as Application
                 val communicationSystem = CommunicationSystem(application.applicationContext, isHost = true)
-                val audioSystem = HostAudioSystem(communicationSystem.roomManager)
+                val audioSystem = HostAudioSystem(application.applicationContext, communicationSystem.roomManager)
                 HostViewModel(
                     context = application.applicationContext,
                     audioSystem = audioSystem,

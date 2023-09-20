@@ -1,5 +1,6 @@
 package com.synervoz.onlineradioapp.domain
 
+import android.content.Context
 import com.synervoz.switchboard.sdk.audioengine.AudioEngine
 import com.synervoz.switchboard.sdk.audiograph.AudioGraph
 import com.synervoz.switchboard.sdk.audiographnodes.AudioPlayerNode
@@ -10,8 +11,8 @@ import com.synervoz.switchboard.sdk.audiographnodes.MusicDuckingNode
 import com.synervoz.switchboard.sdk.audiographnodes.ResampledSinkNode
 import com.synervoz.switchboardagora.rooms.RoomManager
 
-class HostAudioSystem(roomManager: RoomManager) {
-    val audioEngine = AudioEngine(enableInput = true)
+class HostAudioSystem(context: Context, roomManager: RoomManager) {
+    val audioEngine = AudioEngine(context = context, microphoneEnabled = true)
     val audioGraph = AudioGraph()
 
     val agoraResampledSinkNode = ResampledSinkNode()

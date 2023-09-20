@@ -1,13 +1,14 @@
 package com.synervoz.onlineradioapp.domain
 
+import android.content.Context
 import com.synervoz.switchboard.sdk.audioengine.AudioEngine
 import com.synervoz.switchboard.sdk.audiograph.AudioGraph
 import com.synervoz.switchboard.sdk.audiographnodes.MonoToMultiChannelNode
 import com.synervoz.switchboard.sdk.audiographnodes.ResampledSourceNode
 import com.synervoz.switchboardagora.rooms.RoomManager
 
-class ListenerAudioSystem(roomManager: RoomManager) {
-    val audioEngine = AudioEngine(enableInput = true)
+class ListenerAudioSystem(context: Context, roomManager: RoomManager) {
+    val audioEngine = AudioEngine(context = context, microphoneEnabled = true)
     val audioGraph = AudioGraph()
     val agoraResampledSourceNode = ResampledSourceNode()
     val monoToMultiChannelNode = MonoToMultiChannelNode()

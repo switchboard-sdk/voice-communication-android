@@ -1,5 +1,6 @@
 package com.synervoz.voicecommunicationapp.domain
 
+import android.content.Context
 import com.synervoz.switchboard.sdk.audioengine.AudioEngine
 import com.synervoz.switchboard.sdk.audiograph.AudioGraph
 import com.synervoz.switchboard.sdk.audiographnodes.MonoToMultiChannelNode
@@ -8,8 +9,8 @@ import com.synervoz.switchboard.sdk.audiographnodes.ResampledSinkNode
 import com.synervoz.switchboard.sdk.audiographnodes.ResampledSourceNode
 import com.synervoz.switchboardagora.rooms.RoomManager
 
-class AudioSystem(roomManager: RoomManager) {
-    val audioEngine = AudioEngine(enableInput = true)
+class AudioSystem(context: Context, roomManager: RoomManager) {
+    val audioEngine = AudioEngine(context = context, microphoneEnabled = true)
     val audioGraph = AudioGraph()
     val multiChannelToMonoNode = MultiChannelToMonoNode()
     val agoraResampledSourceNode = ResampledSourceNode()

@@ -75,7 +75,7 @@ class ListenerViewModel(
             initializer {
                 val application = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as Application
                 val communicationSystem = CommunicationSystem(application.applicationContext, isHost = false)
-                val audioSystem = ListenerAudioSystem(communicationSystem.roomManager)
+                val audioSystem = ListenerAudioSystem(application.applicationContext, communicationSystem.roomManager)
                 ListenerViewModel(
                     audioSystem = audioSystem,
                     communicationSystem = communicationSystem
