@@ -89,7 +89,7 @@ class RoomViewModel(
             initializer {
                 val application = this[APPLICATION_KEY] as Application
                 val communicationSystem = CommunicationSystem(application.applicationContext)
-                val audioSystem = AudioSystem(communicationSystem.roomManager)
+                val audioSystem = AudioSystem(application.applicationContext, communicationSystem.roomManager)
                 RoomViewModel(
                     audioSystem = audioSystem,
                     communicationSystem = communicationSystem
