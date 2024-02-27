@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
-        SwitchboardSDK.initialize(Config.clientID, Config.clientSecret)
+        SwitchboardSDK.initialize(this, Config.clientID, Config.clientSecret)
         AgoraExtension.initialize(Config.agoraAppID)
 
         if (!requestPermission()) return

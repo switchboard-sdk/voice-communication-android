@@ -23,7 +23,7 @@ interface CommunicationDelegate {
 class CommunicationSystem(context: Context) {
     lateinit var delegate: CommunicationDelegate
 
-    val roomManager = RoomManager(context, Config.switchboardAPIBaseURL)
+    val roomManager = RoomManager(context)
     var room: Room? = null
 
     val users = mutableListOf<String>()
